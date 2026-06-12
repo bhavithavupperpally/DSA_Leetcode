@@ -1,0 +1,26 @@
+class Solution {
+    public int countSymmetricIntegers(int low, int high) {
+    int count=0;
+    for(int num=low;num<=high;num++)
+    {
+        String str=Integer.toString(num);
+        int len=str.length();
+        if(len%2!=0)
+        continue;
+        int half=len/2;
+        int leftsum=0,rightsum=0;
+        for(int i=0;i<half;i++)
+        {
+            leftsum+=str.charAt(i)-'0';
+        }
+        for(int i=half;i<len;i++)
+        {
+            rightsum+=str.charAt(i)-'0';
+        }
+        if(leftsum==rightsum)
+        count++;
+
+    }
+    return count;
+    }
+}
