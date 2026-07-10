@@ -1,11 +1,10 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Arrays.sort(nums);
-       int  res=0;
+        int xor=0;
         for(int ele:nums)
         {
-            res^=ele;
+            xor^=ele;
         }
-        return res;
+        return xor;
     }
 }
