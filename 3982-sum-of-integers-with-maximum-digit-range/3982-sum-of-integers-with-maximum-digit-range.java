@@ -1,6 +1,6 @@
 class Solution {
     public int maxDigitRange(int[] nums) {
-        HashMap<Integer,Integer> mp=new HashMap<>();
+       
         int maxrange=-1;
         int sum=0;
         for(int i:nums)
