@@ -3,9 +3,10 @@ class Solution {
         int ans=0;
         for(int i=0;i<columnTitle.length();i++)
         {
-            ans=ans*26+(columnTitle.charAt(i)-'A'+1);
+             char ch=columnTitle.charAt(i);
+             int val=ch-'A'+1;
+             ans=ans*26+val;
         }
         return ans;
     }
-
 }
