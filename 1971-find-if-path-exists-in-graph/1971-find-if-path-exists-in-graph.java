@@ -1,36 +1,38 @@
 class Solution {
-    public boolean validPath(int n, int[][] edges, int src, int dest) {
-        Map<Integer,List<Integer>> mp=new HashMap<>();
+
+            public boolean dfs(int node,int destination,ArrayList<ArrayList<Integer>> adj,HashSet<Integer> visited)
+            {
+
+                if(node==destination)
+                return true;
+                visited.add(node);
+                for(int neighbour:adj.get(node))
+                {
+                    if(!visited.contains(neighbour))
+                    
+                    if(dfs(neighbour,destination,adj,visited))
+                    return true;
+                }
+                return false;
+            }
+   
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
+        HashSet<Integer> visited=new HashSet<>();
         for(int i=0;i<n;i++)
         {
-            mp.put(i,new ArrayList<>());
+            adj.add(new ArrayList<>());
+            
         }
-        Queue<Integer> q=new LinkedList<>();
-        HashSet<Integer> s=new HashSet<>();
+        
         for(int i=0;i<edges.length;i++)
         {
             int u=edges[i][0];
             int v=edges[i][1];
-            mp.get(u).add(v);
-            mp.get(v).add(u);
-
+            adj.get(u).add(v);
+            adj.get(v).add(u);
         }
-        q.add(src);
-        s.add(src);
-        
-        while(!q.isEmpty())
-        {
-            int u=q.remove();
-            if(u==dest) return true;
-            for(int v:mp.get(u))
-            {
-                if(!s.contains(v))
-                {
-                    q.add(v);
-                    s.add(v);
-                }
-            }
-        }
-        return false;
+            boolean ans=dfs(source,destination,adj,visited);
+            return ans;
     }
 }
