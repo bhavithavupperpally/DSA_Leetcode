@@ -1,34 +1,33 @@
 class Solution {
     public boolean canPartition(int[] nums) {
-        int totSum = 0;
-     
-        
-        for(int i = 0; i<nums.length; i++){
-            totSum+=nums[i];
+        int n = nums.length;
+        int sum = 0;
+        for (int ele : nums) {
+            sum += ele;
         }
-        if(totSum%2!=0) return false;
-        int target = totSum/2;
-           Boolean[][] dp = new Boolean[nums.length+1][target+1]; 
-           
-       return function(nums.length-1,target, nums,dp);
-    }
-    public boolean function(int i, int target, int[] nums, Boolean[][] dp){
-        if(target == 0){
-            return true;
-        }
-        
-      if(i<0){
-        return false;
-      }
-      if(dp[i][target] != null){
-      return   dp[i][target];
-      }
-       boolean notTake = function(i-1, target,nums,dp);
-       boolean take = false;
-       if(nums[i]<=target){
-         take =  function (i-1,target-nums[i],nums,dp);
-       }
 
-       return  dp[i][target] = take || notTake;
+        if (sum % 2 != 0) return false;
+
+        int target = sum / 2;
+        boolean[][] dp = new boolean[n + 1][target + 1];
+
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = true;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= target; j++) {
+                boolean exc = dp[i - 1][j];
+                boolean inc = false;
+
+                if (nums[i - 1] <= j) {
+                    inc = dp[i - 1][j - nums[i - 1]];
+                }
+
+                dp[i][j] = inc || exc;
+            }
+        }
+
+        return dp[n][target];
     }
 }
