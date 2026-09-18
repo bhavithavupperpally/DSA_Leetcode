@@ -28,14 +28,14 @@ class Solution {
                 }
             }
         }
-        int min=n;
+        int min=INF;
         int resultcity=-1;
         for(int i=0;i<n;i++)
         {
             int reachablecount=0;
             for(int j=0;j<n;j++)
             {
-                if(i!=j&&dist[i][j]<=distanceThreshold)
+                if(dist[i][j]<=distanceThreshold)
                 
                 reachablecount++;
             }
