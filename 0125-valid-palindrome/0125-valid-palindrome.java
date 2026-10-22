@@ -3,15 +3,13 @@ class Solution {
         StringBuilder sb=new StringBuilder();
         for(int i=0;i<s.length();i++)
         {
-            char ch=s.charAt(i);
-             if (!Character.isLetterOrDigit(ch))
+            if(!Character.isLetterOrDigit(s.charAt(i)))
             continue;
-            
-            sb.append(Character.toLowerCase(ch));
+            sb.append(Character.toLowerCase(s.charAt(i)));
         }
-        String str=sb.toString();
-         String rev = new StringBuilder(str).reverse().toString();
-        return str.equals(rev);
-
+        String o=sb.toString();
+        String r=new StringBuilder(sb).reverse().toString();
+        return o.equals(r);
+    
     }
 }
